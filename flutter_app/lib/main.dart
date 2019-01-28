@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+//Metodo main
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -8,6 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter demo Contador'),
     );
   }
 }
@@ -54,11 +57,14 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+
     });
+
   }
 
   @override
   Widget build(BuildContext context) {
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -92,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              'Tu haz presionado este numero de veces ',
             ),
             Text(
               '$_counter',
@@ -109,3 +115,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
+
+
+
