@@ -1,98 +1,151 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+
 
 void main() => runApp(new MaterialApp(
-    home: MyApp(),
-    title: 'Card',
+    home: ListPage(),
     theme: ThemeData(
       primarySwatch: Colors.blue,
     ),
  )
 );
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
+class ListPage extends StatefulWidget {
+
+  ListPage({Key key}) : super(key: key);
+
+  // Creacion de los items de la lista
+  List<String> items = new List<String>.generate(30, (i) => "Item ${(i + 1)}");
+
   @override
-  Widget build(BuildContext context) {
-
-    final double IconSize = 40;
-
-    final TextStyle textStyle = TextStyle(
-       color: Colors.grey,
-       fontSize: 30.0
-    );
-
-    return new Scaffold(
-      appBar: AppBar(
-        title:Text("Cards"),
-      ),
-      body:Container(
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              new myCard(
-                   Text("Tarjeta 1", style: textStyle,),
-                   Icon(Icons.face, size: IconSize, color: Colors.blueAccent,)
-              ),
-              new myCard(
-                  Text("Tarjeta 2", style: textStyle,),
-                  Icon(Icons.favorite, size: IconSize, color: Colors.deepOrangeAccent,)
-              ),
-              new myCard(
-                  Text("Tarjeta 3", style: textStyle,),
-                  Icon(Icons.account_circle, size: IconSize, color: Colors.deepPurpleAccent,)
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+  State<StatefulWidget> createState() {
+    return new ListPageState(items: items);
   }
 }
 
-class myCard extends StatelessWidget{
 
-  final Widget titulo;
-  final Widget icono;
+class ListPageState extends State<ListPage> {
 
-  myCard(this.titulo,this.icono);
+  //Constructor
+  ListPageState({this.items});
+
+  //Lista de tipo String
+  final List<String> items;
+
+
+  /*
+    Las claves globales identifican de forma única los elementos.
+    Las claves globales proporcionan acceso a otros objetos que están asociados
+     con elementos, como BuildContext y, para StatefulWidgets, a State.
+  */
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = new GlobalKey<RefreshIndicatorState>();
+
+  Future<Null> _handleRefresh() {
+    final Completer<Null> completer = new Completer<Null>();
+
+    new Timer(const Duration(seconds: 2), () {
+      completer.complete(null);
+    });
+
+    return completer.future.then((_) {
+      _scaffoldKey.currentState?.showSnackBar(
+        new SnackBar(
+          content: const Text('Refresh complete'),
+          action: new SnackBarAction(
+            label: 'RETRY',
+            onPressed: () {
+              _refreshIndicatorKey.currentState.show();
+            },
+          ),
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return Container(
-      padding: EdgeInsets.only(top: 1.0),
-        margin: EdgeInsets.only(
-            top: 10.0,
-            left: 5.0,
-            right: 5.0
-        ),
-      child: Card(
-        child: Container(
-          padding: EdgeInsets.all(
-              20.0
-          ),
-          child: Column(
-            children: <Widget>[
-              titulo,
-              icono
-            ],
-          ),
-        ),
+    return new Scaffold(
+      key: _scaffoldKey,
+      appBar: new AppBar(
+        title: new Text('Lista'),
       ),
-      decoration: BoxDecoration(
-          borderRadius:  BorderRadius.all(Radius.circular(10.0)),
-          shape: BoxShape.rectangle,
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: Colors.black38,
-                blurRadius: 10.0,
-                offset: Offset(0.0, 7.0)
-            )
-          ]
+      body: new RefreshIndicator(
+        color: Colors.blue,
+        key: _refreshIndicatorKey,
+        onRefresh: _handleRefresh,
+        child: new ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            final item = items[index];
+
+            return new Dismissible(
+              key: new Key(item),
+              onDismissed: (direction) {
+                setState(() {
+                  items.removeAt(index);
+                  Scaffold.of(context).showSnackBar(
+                    new SnackBar(content: new Text("$item dismissed")),
+                  );
+                });
+              },
+              background: new Container(
+                color: Colors.red,
+                child: const ListTile(
+                    leading: const Icon(Icons.delete, color: Colors.white)),
+              ),
+              secondaryBackground: new Container(
+                color: Colors.red,
+                child: const ListTile(
+                    trailing: const Icon(Icons.delete, color: Colors.white)),
+              ),
+              child: new ListTile(
+                leading: new CircleAvatar(
+                  backgroundColor: Colors.grey,
+                  child: new Icon(
+                      Icons.account_circle,
+                      color: Colors.white,
+                      size: 40,),
+
+                ),
+                title: new Text('$item'),
+                subtitle: new Text('Pull to refresh.\nSwipe to dismiss.'),
+                onTap: () {
+                  _showDialog("Alerta","Dato Seleccionado: $item");
+                },
+              ),
+            );
+          },
+        ),
       ),
     );
   }
 
+
+  void _showDialog(String titulo, String contenido) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text(titulo),
+          content: new Text(contenido),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Cerrar"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
 
