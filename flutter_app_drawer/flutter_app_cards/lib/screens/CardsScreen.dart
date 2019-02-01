@@ -9,25 +9,36 @@ class CardsScreen extends StatelessWidget {
       child: new Column(
         children: <Widget>[
           new Card(
-            color: Color(0xFFFFF59D),
+            color: Color(0xFFF3862FF),
             child: new Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 const ListTile(
-                  leading: const Icon(Icons.image),
-                  title: const Text('This Is A Title'),
-                  subtitle: const Text('This is a subtitle in a list tile.'),
+                  leading: const Icon(
+                    Icons.account_circle,
+                    color: Colors.white,
+                    size: 50.0,),
+                  title: const Text('Esto es un titulo',style: TextStyle(
+                    color: Colors.white, fontSize: 20.0
+                  ),),
+                  subtitle: const Text('Esto es un subtitulo',style: TextStyle(
+                      color: Colors.white
+                  )),
                 ),
                 new ButtonTheme.bar(
                   // make buttons use the appropriate styles for cards
                   child: new ButtonBar(
                     children: <Widget>[
                       new FlatButton(
-                        child: const Text('Button1'),
+                        child: const Text('Cancelar',style: TextStyle(
+                            color: Colors.white
+                        )),
                         onPressed: () {},
                       ),
                       new FlatButton(
-                        child: const Text('Button2'),
+                        child: const Text('Aceptar',style: TextStyle(
+                                            color: Colors.white
+                                            )),
                         onPressed: () {},
                       ),
                     ],
@@ -46,8 +57,8 @@ class CardsScreen extends StatelessWidget {
                   fit: BoxFit.fill,
                 ),
                 const ListTile(
-                  title: const Text('This Is A Title'),
-                  subtitle: const Text('This is a subtitle in a card.'),
+                  title: const Text('Esto es un titulo'),
+                  subtitle: const Text('Esto es un sibtitulo de la tarjeta.'),
                 ),
                 new ButtonTheme.bar(
                   // make buttons use the appropriate styles for cards
@@ -55,11 +66,11 @@ class CardsScreen extends StatelessWidget {
                     alignment: MainAxisAlignment.start,
                     children: <Widget>[
                       new FlatButton(
-                        child: const Text('Button1'),
+                        child: const Text('Cancelar'),
                         onPressed: () {},
                       ),
                       new FlatButton(
-                        child: const Text('Button2'),
+                        child: const Text('Aceptar'),
                         onPressed: () {},
                       ),
                     ],
@@ -82,7 +93,7 @@ class CardsScreen extends StatelessWidget {
                     ),
                     new ListTile(
                       title: new Text(
-                        'This Is A Title',
+                        'Esto es un titulo',
                         style:
                         new TextStyle(color: Colors.white, fontSize: 24.0),
                       ),
@@ -94,15 +105,15 @@ class CardsScreen extends StatelessWidget {
                     alignment: MainAxisAlignment.end,
                     children: <Widget>[
                       new IconButton(
-                        icon: new Icon(Icons.favorite, color: Colors.grey),
+                        icon: new Icon(Icons.favorite, color: Colors.red),
                         onPressed: () {},
                       ),
                       new IconButton(
-                        icon: new Icon(Icons.bookmark, color: Colors.grey),
+                        icon: new Icon(Icons.bookmark, color: Colors.brown),
                         onPressed: () {},
                       ),
                       new IconButton(
-                        icon: new Icon(Icons.share, color: Colors.grey),
+                        icon: new Icon(Icons.share, color: Colors.blue),
                         onPressed: () {},
                       ),
                     ],
