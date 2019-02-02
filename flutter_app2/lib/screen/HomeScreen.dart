@@ -12,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   //var _numero1;
   //var _numero2;
+
   String resultadoOp = "";
 
   final TextEditingController _numero1controller = new TextEditingController();
@@ -86,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: new TextField(
                       controller: _numero1controller,
                       decoration: InputDecoration(
-                        labelText: "Numero 1"
+                        labelText: "Numero 1",
                         //hintText: "Numero 1"
                       ),
                       keyboardType: TextInputType.number,
@@ -123,7 +124,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ]
             ),
-
           ),
 
           padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 5.0),
@@ -132,7 +132,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
         floatingActionButton: new FloatingActionButton(
             child: new Icon(Icons.add),
-            onPressed: fabPressed),
+            onPressed: fabPressed
+        ),
       );
     }
   }

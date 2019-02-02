@@ -12,6 +12,7 @@ class NavegacionScreen extends StatelessWidget{
   );
 
 
+
  // NavegacionScreen({Key key, listaPersonas}) : super(key: key);
 
   @override
@@ -23,8 +24,14 @@ class NavegacionScreen extends StatelessWidget{
       body: ListView.builder(
         itemCount: listaPersonas.length,
         itemBuilder: (context, index) {
+
+          bool isIOS = Theme.of(context).platform == TargetPlatform.iOS;
+
           return ListTile(
             title: Text(listaPersonas[index].nombre),
+            subtitle: Text(listaPersonas[index].descripcion),
+            leading: Icon(Icons.account_circle,size: 50.0,),
+            trailing: (isIOS) ? Icon(Icons.arrow_forward_ios): Icon(Icons.arrow_forward),
             onTap: () {
               Navigator.push(context,
                 MaterialPageRoute(builder: (context) => DetallePersonaScreen(objPersona: listaPersonas[index]),
