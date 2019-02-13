@@ -7,7 +7,8 @@ class DetallePersonaScreen extends StatelessWidget {
 
   final Persona objPersona;
 
-  DetallePersonaScreen({Key key, @required this.objPersona}) : super(key: key);
+  DetallePersonaScreen({Key key, @required this.objPersona})
+                         : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,9 @@ class DetallePersonaScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SegundaScreen(objPersona.nombre)),
+                    MaterialPageRoute(builder:
+                        (context) =>
+                            SegundaScreen(objPersona.nombre)),
                   );
                 },
               ),

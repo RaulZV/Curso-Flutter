@@ -31,10 +31,12 @@ class NavegacionScreen extends StatelessWidget{
             title: Text(listaPersonas[index].nombre),
             subtitle: Text(listaPersonas[index].descripcion),
             leading: Icon(Icons.account_circle,size: 50.0,),
-            trailing: (isIOS) ? Icon(Icons.arrow_forward_ios): Icon(Icons.arrow_forward),
+            trailing: (isIOS) ? Icon(Icons.arrow_forward_ios):
+            Icon(Icons.arrow_forward),
             onTap: () {
               Navigator.push(context,
-                MaterialPageRoute(builder: (context) => DetallePersonaScreen(objPersona: listaPersonas[index]),
+                MaterialPageRoute(builder: (context) =>
+                    DetallePersonaScreen(objPersona: listaPersonas[index]),
                 ),
               );
             },
@@ -43,7 +45,6 @@ class NavegacionScreen extends StatelessWidget{
       ),
     );
   }
-
 }
 
 

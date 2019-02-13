@@ -13,7 +13,8 @@ class NavigationDrawer extends StatefulWidget {
 
 }
 
-class _NavigationDrawer extends State<NavigationDrawer> with WidgetsBindingObserver{
+class _NavigationDrawer extends State<NavigationDrawer>
+    with WidgetsBindingObserver{
 
   changeNavigationColor() async {
     try {
@@ -50,7 +51,8 @@ class _NavigationDrawer extends State<NavigationDrawer> with WidgetsBindingObser
             ),
             /*decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: NetworkImage("https://cdn-images-1.medium.com/max/1600/1*8_sKMUCcMPka4fBzmcWuhA.png"),
+                    image:
+                     NetworkImage("https://cdn-images-1.medium.com/max/1600/1*8_sKMUCcMPka4fBzmcWuhA.png"),
                     fit: BoxFit.cover
                 )
             ),*/
@@ -67,7 +69,6 @@ class _NavigationDrawer extends State<NavigationDrawer> with WidgetsBindingObser
                         builder:(BuildContext context) => PrimerScreen()
                     )
                 );
-
               },
             ),
           ),
@@ -80,9 +81,7 @@ class _NavigationDrawer extends State<NavigationDrawer> with WidgetsBindingObser
                       builder:(BuildContext context) => SegundoScreen()
                   )
               );
-
             },
-
           ),
           new ListTile(
             title: Text("Item 3"),
@@ -93,7 +92,6 @@ class _NavigationDrawer extends State<NavigationDrawer> with WidgetsBindingObser
                       builder:(BuildContext context) => PrimerScreen()
                   )
               );
-
             },
           ),
           new Divider(),
@@ -107,10 +105,8 @@ class _NavigationDrawer extends State<NavigationDrawer> with WidgetsBindingObser
                       builder:(BuildContext context) => SegundoScreen()
                   )
               );
-
             },
           )
-
         ],
       ) ,
     );
