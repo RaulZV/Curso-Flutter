@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:giffy_dialog/giffy_dialog.dart';
+
 
 class DialogoScreen extends StatefulWidget {
   @override
@@ -19,15 +21,18 @@ class _DialogoScreen extends State<DialogoScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     final ThemeData theme = Theme.of(context);
+
     final TextStyle dialogTextStyle =
     theme.textTheme.subhead.copyWith(color: theme.textTheme.caption.color);
 
     return new ListView(
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
       children: <Widget>[
+
         new RaisedButton(
-            padding: EdgeInsets.symmetric(vertical: 14.0),
+            padding: EdgeInsets.symmetric(vertical: 25.0),
             child: new Text(
               'Alert Dialog',
               style: new TextStyle(color: Colors.white),
@@ -35,25 +40,46 @@ class _DialogoScreen extends State<DialogoScreen> {
             color: Colors.red,
             onPressed: () {
               showDialog(
+                context: context,builder: (objecto) =>
+                  NetworkGiffyDialog(
+                  imageUrl:"https://raw.githubusercontent.com/Shashank02051997/FancyGifDialog-Android/master/GIF's/gif14.gif",
+              title: Text('Granny Eating Chocolate',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.w600)),
+                description:Text('This is a granny eating chocolate dialog box.This library helps you easily create fancy giffy dialog',
+                  textAlign: TextAlign.center,
+                ),
+                onOkButtonPressed: () {},
+              )
+              );
+            /*  showDialog(
                 context: context,
                 child: new AlertDialog(
                   content: new Text('This is content', style: dialogTextStyle),
                   actions: <Widget>[
                     new FlatButton(
                       onPressed: () {
-                        Navigator.pop(context, 'OK');
+                        Navigator.pop(context, 'OK-MTWDM');
                       },
                       child: const Text('OK'),
+
                     )
                   ],
+
                 ),
               ).then((onValue) {
                 if (onValue != null) {
                   Scaffold.of(context).showSnackBar(
                       new SnackBar(content: new Text('$onValue')));
                 }
-              });
+              });*/
             }),
+
+
+
+
         new RaisedButton(
             padding: EdgeInsets.symmetric(vertical: 14.0),
             child: new Text(
@@ -88,6 +114,9 @@ class _DialogoScreen extends State<DialogoScreen> {
                 }
               });
             }),
+
+
+
         new RaisedButton(
             padding: EdgeInsets.symmetric(vertical: 14.0),
             child: new Text(
@@ -106,6 +135,10 @@ class _DialogoScreen extends State<DialogoScreen> {
                 }
               });
             }),
+
+
+
+
         new RaisedButton(
             padding: EdgeInsets.symmetric(vertical: 14.0),
             child: new Text(
@@ -124,6 +157,10 @@ class _DialogoScreen extends State<DialogoScreen> {
                 }
               });
             }),
+
+
+
+
         new RaisedButton(
             padding: EdgeInsets.symmetric(vertical: 14.0),
             child: new Text(
@@ -143,6 +180,10 @@ class _DialogoScreen extends State<DialogoScreen> {
                 }
               });
             }),
+
+
+
+
         new RaisedButton(
             padding: EdgeInsets.symmetric(vertical: 14.0),
             child: new Text(
@@ -163,6 +204,9 @@ class _DialogoScreen extends State<DialogoScreen> {
                 }
               });
             }),
+
+
+
         new RaisedButton(
             padding: EdgeInsets.symmetric(vertical: 14.0),
             child: new Text(
@@ -171,6 +215,8 @@ class _DialogoScreen extends State<DialogoScreen> {
             ),
             color: Colors.orange,
             onPressed: () {
+
+
               showModalBottomSheet<void>(
                   context: context,
                   builder: (BuildContext context) {
@@ -209,6 +255,10 @@ class _DialogoScreen extends State<DialogoScreen> {
                         ));
                   });
             }),
+
+
+
+
         new RaisedButton(
             padding: EdgeInsets.symmetric(vertical: 14.0),
             child: new Text(
@@ -255,6 +305,10 @@ class _DialogoScreen extends State<DialogoScreen> {
                         ));
                   });
             }),
+
+
+
+
       ].map((Widget widget) {
         return new Container(
           padding: const EdgeInsets.symmetric(vertical: 12.0),
