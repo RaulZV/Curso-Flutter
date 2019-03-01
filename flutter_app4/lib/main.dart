@@ -4,6 +4,7 @@ import 'dart:async';
 
 void main() => runApp(new MaterialApp(
     home: ListPage(),
+    debugShowCheckedModeBanner: false,
     theme: ThemeData(
       primarySwatch: Colors.blue,
     ),
@@ -36,13 +37,15 @@ class ListPageState extends State<ListPage> {
 
   /*
     Las claves globales identifican de forma única los elementos.
-    Las claves globales proporcionan acceso a otros objetos que están asociados
+    Las claves globales proporcionan acceso a otros objetos que
+    están asociados
      con elementos, como BuildContext y, para StatefulWidgets, a State.
   */
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = new GlobalKey<RefreshIndicatorState>();
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey
+                       = new GlobalKey<RefreshIndicatorState>();
 
   Future<Null> _handleRefresh() {
     final Completer<Null> completer = new Completer<Null>();
@@ -84,13 +87,33 @@ class ListPageState extends State<ListPage> {
 
             return new Dismissible(
               key: new Key(item),
+              //direction: DismissDirection.vertical,
               onDismissed: (direction) {
+
+
                 setState(() {
                   items.removeAt(index);
-                  Scaffold.of(context).showSnackBar(
-                    new SnackBar(content: new Text("$item dismissed")),
-                  );
                 });
+
+
+
+                if(direction == DismissDirection.endToStart ){
+
+                  Scaffold.of(context).showSnackBar(
+                    new SnackBar(content: new Text("$item archivado")),
+                  );
+
+                }else if (direction == DismissDirection.startToEnd){
+
+                    Scaffold.of(context).showSnackBar(
+                      new SnackBar(content: new Text("$item Eliminar")),
+                    );
+
+                }
+
+                //_showDialog("Alerta","Dato Seleccionado: $direction");
+
+
               },
               background: new Container(
                 color: Colors.red,
@@ -98,10 +121,11 @@ class ListPageState extends State<ListPage> {
                     leading: const Icon(Icons.delete, color: Colors.white)),
               ),
               secondaryBackground: new Container(
-                color: Colors.red,
+                color: Colors.green,
                 child: const ListTile(
-                    trailing: const Icon(Icons.delete, color: Colors.white)),
+                    trailing: const Icon(Icons.edit, color: Colors.white)),
               ),
+              //Contenido
               child: new ListTile(
                 leading: new CircleAvatar(
                   backgroundColor: Colors.grey,
@@ -147,5 +171,9 @@ class ListPageState extends State<ListPage> {
       },
     );
   }
+
+
+
+
 }
 
