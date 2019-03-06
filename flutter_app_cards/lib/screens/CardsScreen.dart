@@ -8,6 +8,8 @@ class CardsScreen extends StatelessWidget {
       padding: EdgeInsets.all(10.0),
       child: new Column(
         children: <Widget>[
+
+
           new Card(
             color: Color(0xFFF3862FF),
             child: new Column(
@@ -17,18 +19,38 @@ class CardsScreen extends StatelessWidget {
                   leading: const Icon(
                     Icons.account_circle,
                     color: Colors.white,
-                    size: 50.0,),
+                    size: 50.0
+                  ),
+
+                  trailing: const Icon(
+                      Icons.account_circle,
+                      color: Colors.white,
+                      size: 50.0
+                  ),
                   title: const Text('Esto es un titulo',style: TextStyle(
                     color: Colors.white, fontSize: 20.0
-                  ),),
+                  ),
+                  ),
+
+
                   subtitle: const Text('Esto es un subtitulo',style: TextStyle(
                       color: Colors.white
                   )),
+
+
                 ),
                 new ButtonTheme.bar(
                   // make buttons use the appropriate styles for cards
                   child: new ButtonBar(
                     children: <Widget>[
+                      new RaisedButton(
+                        child: const Text("Aceptar", style: TextStyle(
+                          color: Colors.white,
+                        ),),
+                        onPressed: () {
+
+                        },
+                      ),
                       new FlatButton(
                         child: const Text('Cancelar',style: TextStyle(
                             color: Colors.white
@@ -47,13 +69,16 @@ class CardsScreen extends StatelessWidget {
               ],
             ),
           ),
+
+
+
           new Card(
             child: new Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 new Image.asset(
                   'res/images/material_design_2.jpg',
-//                  height: 192.0,
+//                  height: 60.0,
                   fit: BoxFit.fill,
                 ),
                 const ListTile(
@@ -79,12 +104,15 @@ class CardsScreen extends StatelessWidget {
               ],
             ),
           ),
+
+
+
           new Card(
             child: new Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 new Stack(
-                  alignment: AlignmentDirectional.bottomStart,
+                  alignment: AlignmentDirectional.bottomEnd,
                   children: <Widget>[
                     new Image.asset(
                       'res/images/material_design_4.jpg',
