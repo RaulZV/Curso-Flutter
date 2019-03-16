@@ -6,6 +6,8 @@ import 'dart:convert';
 import 'package:progress_hud/progress_hud.dart';
 import 'package:flutter_app_apirest/Model/Alumno.dart';
 
+import 'package:flutter_app_apirest/Views/DetalleAlumnoScreen.dart';
+
 class AlumnoPage extends StatefulWidget {
 
   AlumnoPage({Key key, this.title}) : super(key: key);
@@ -20,7 +22,7 @@ class _MyAlumnoPageState extends State<AlumnoPage> {
 
   Future<List<Alumno>> _getDatosAlumno() async {
 
-    var data = await http.get("http://192.168.200.216:3000/alumnos/getDatosAlumnos");
+    var data = await http.get("http://172.18.3.221:3000/alumnos/getDatosAlumnos");
 
     var jsonData = json.decode(data.body);
 
@@ -115,7 +117,7 @@ class _MyAlumnoPageState extends State<AlumnoPage> {
 
                   onTap: () {
 
-                   // Navigator.push(context, new MaterialPageRoute(builder:(context) => DetalleAlumno(snapshot.data[index])));
+                    Navigator.push(context, new MaterialPageRoute(builder:(context) => DetalleAlumno(snapshot.data[index])));
 
                   },
                 );

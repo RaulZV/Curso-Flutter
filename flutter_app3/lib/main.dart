@@ -8,6 +8,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+    bool isIOS = Theme.of(context).platform == TargetPlatform.iOS;
+
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
@@ -23,8 +26,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: AppBottomNavigation()
-     // home: CupertinoDisenio()
+      //home: AppBottomNavigation()
+      home: (isIOS==true)?CupertinoDisenio():AppBottomNavigation()
     );
   }
 }
