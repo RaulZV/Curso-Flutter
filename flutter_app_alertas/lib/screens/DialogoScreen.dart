@@ -42,7 +42,7 @@ class _DialogoScreen extends State<DialogoScreen> {
               showDialog(
                 context: context,builder: (objecto) =>
                   NetworkGiffyDialog(
-                  imageUrl:"https://raw.githubusercontent.com/Shashank02051997/FancyGifDialog-Android/master/GIF's/gif14.gif",
+                  image: Image.network("https://raw.githubusercontent.com/Shashank02051997/FancyGifDialog-Android/master/GIF's/gif14.gif"),
               title: Text('Granny Eating Chocolate',
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -238,19 +238,19 @@ class _DialogoScreen extends State<DialogoScreen> {
                               dense: true,
                               title: const Text('Click anywhete to dismiss'),
                             ),
-                            new ButtonTheme.bar(
-                              // make buttons use the appropriate styles for cards
-                              child: new ButtonBar(
-                                children: <Widget>[
-                                  new FlatButton(
-                                    child: const Text('OK'),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
+                            ButtonBarTheme(
+                                data: ButtonBarThemeData(alignment: MainAxisAlignment.start),
+                               child: new ButtonBar(
+                                 children: <Widget>[
+                                   new FlatButton(
+                                     child: const Text('OK'),
+                                     onPressed: () {
+                                       Navigator.pop(context);
+                                     },
+                                   ),
+                                 ],
+                               )
+                           )
                           ],
                         ));
                   });
@@ -288,7 +288,8 @@ class _DialogoScreen extends State<DialogoScreen> {
                               dense: true,
                               title: const Text('Click OK to dismiss'),
                             ),
-                            new ButtonTheme.bar(
+                            ButtonBarTheme(
+                              data: ButtonBarThemeData(alignment: MainAxisAlignment.center),
                               // make buttons use the appropriate styles for cards
                               child: new ButtonBar(
                                 children: <Widget>[
@@ -452,7 +453,8 @@ class MultiChoiceDialogState extends State<MultiChoiceDialog> {
                 }),
           ],
         ),
-        new ButtonTheme.bar(
+        ButtonBarTheme(
+          data: ButtonBarThemeData(alignment: MainAxisAlignment.end),
           child: new ButtonBar(
             children: <Widget>[
               new FlatButton(
