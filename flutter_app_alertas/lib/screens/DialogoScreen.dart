@@ -385,8 +385,8 @@ class SingleChoiceDialogState extends State<SingleChoiceDialog> {
             ),
           ],
         ),
-        new ButtonTheme.bar(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
+        ButtonBarTheme(
+          data: ButtonBarThemeData(alignment: MainAxisAlignment.end),
           child: new ButtonBar(
             children: <Widget>[
               new FlatButton(
