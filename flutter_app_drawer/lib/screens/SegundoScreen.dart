@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_drawer/componentes/navigationDrawer.dart';
 
-class SegundoScreen extends StatelessWidget{
+
+class SegundaScreen extends StatelessWidget{
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: AppBar(title: new Text("Segunda Vista"),),
-      //drawer: NavigationDrawer(),
+    // TODO: implement build
+    return Scaffold(
+      appBar: AppBar(title: Text("Segunda vista"),),
       body: Center(
-        child: Text("Descripcion de vista"),
+        child: Text("Contenido segunda vista"),
       ),
     );
   }
+
 }

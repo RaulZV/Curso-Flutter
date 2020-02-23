@@ -7,12 +7,11 @@ class DetallePersonaScreen extends StatelessWidget {
 
   final Persona objPersona;
 
-  DetallePersonaScreen({Key key, @required this.objPersona})
-                         : super(key: key);
+  DetallePersonaScreen({Key key, @required this.objPersona}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Usa el objeto objPersona para crear nuestra UI
+    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: Text("${objPersona.nombre}"),
@@ -22,21 +21,18 @@ class DetallePersonaScreen extends StatelessWidget {
         child: Container(
           child: Column(
             children: <Widget>[
-              Text('${objPersona.descripcion}'),
+              Text("${objPersona.descripcion}"),
               RaisedButton(
-                child: Text('Siguiente'),
+                child: Text("Siguiente"),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder:
-                        (context) =>
-                            SegundaScreen(objPersona.nombre)),
-                  );
+                  Navigator.push(context,
+                      MaterialPageRoute(builder:
+                          (context) => SegundaScreen(objPersona.nombre)));
                 },
-              ),
+              )
             ],
           ),
-        )
+        ),
       ),
     );
   }

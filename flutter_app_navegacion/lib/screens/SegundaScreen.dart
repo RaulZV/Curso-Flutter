@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SegundaScreen extends StatelessWidget {
+class SegundaScreen  extends StatelessWidget{
 
   String titulo;
 
@@ -8,18 +8,20 @@ class SegundaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text("Segunda Pantalla $titulo"),
+        title: Text("Segunda pantalla  $titulo"),
       ),
       body: Center(
         child: RaisedButton(
-          onPressed: () {
+          child: Text("Regresar"),
+          onPressed: (){
             Navigator.pop(context);
           },
-          child: Text('Regresar'),
         ),
       ),
     );
   }
+
 }
