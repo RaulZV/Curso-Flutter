@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_apirest/Vistas/detalleLugarScreen.dart';
 import 'package:flutter_app_apirest/provedores/DBProvider.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'dart:io' as Io;
 
 import 'package:progress_hud/progress_hud.dart';
 import 'package:flutter_app_apirest/Modelo/Lugar.dart';
@@ -45,9 +48,12 @@ class _MiLugarState extends State<lugarScreen>{
 
     for(var l in jsonData){
 
+     // final bytesImg = await Io.File(l["imagen_nombre"]).readAsBytes();
+     // String img64 =  Utility.base64String(bytesImg);
+
       Lugar objLugar =  Lugar(l["id"], l["nombre"], l["descripcion"],
                               l["direccion"],l["telefono"],l["website"],
-                              l["imagen_nombre"], l["importancia"],l["latitud"],
+                             l["imagen_nombre"], l["importancia"],l["latitud"],
                              l["longitud"],l["title"],l["reaction"]);
       DBProvider.db.insertarTbl(objLugar);
       lugares.add(objLugar);
@@ -75,12 +81,14 @@ class _MiLugarState extends State<lugarScreen>{
 
   }
 
- Future<List<Lugar>> verificarConexion() async {
+  Future<List<Lugar>> verificarConexion() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
 
     if (connectivityResult == ConnectivityResult.none) {
      return  DBProvider.db.consultaTabla();
     } else if (connectivityResult == ConnectivityResult.wifi) {
+      return _getDatosLugar();
+    }else if (connectivityResult == ConnectivityResult.mobile) {
       return _getDatosLugar();
     }
   }
@@ -111,13 +119,16 @@ class _MiLugarState extends State<lugarScreen>{
                itemBuilder: (BuildContext context, int index){
 
                  return ListTile(
-
-                   leading:  CircleAvatar(
-                     backgroundImage: NetworkImage(
-                       snapshot.data[index].imagen_nombre
+                   leading: CachedNetworkImage(
+                     imageUrl: snapshot.data[index].imagen_nombre,
+                     imageBuilder: (context, imageProvider) =>  CircleAvatar(
+                       backgroundImage: imageProvider,
                      ),
-                   ),
 
+                     placeholder: (context, url) => CircularProgressIndicator(),
+                     errorWidget: (context, url, error) => Icon(Icons.error),
+                   ),
+                  // leading: CircleAvatar(backgroundImage: NetworkImage(snapshot.data[index].imagen_nombre)),//imageOnOffiline (snapshot.data[index].imagen_nombre)
                    title: Text(snapshot.data[index].nombre),
                    subtitle: Text(snapshot.data[index].descripcion),
 
@@ -136,5 +147,4 @@ class _MiLugarState extends State<lugarScreen>{
       ),
     );
   }
-  
 }

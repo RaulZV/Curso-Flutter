@@ -30,6 +30,7 @@ dependencies:
   sqflite: ^1.2.2
   connectivity: ^0.4.8+2
   path_provider: ^1.6.5
+  cached_network_image: ^2.0.0
 
 dev_dependencies:
   flutter_test:
