@@ -23,7 +23,6 @@ class _AppBottomNavigation extends State<AppBottomNavigation>{
   ];
 
   void onTapTapped(int index){
-
     //Llamar toda la funcionalidad de StatefulWidget
     setState(() {
       indexTap = index;
