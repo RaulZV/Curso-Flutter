@@ -17,7 +17,7 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Screenshots
 
-<img width="858" alt="Captura de Pantalla 2020-04-14 a la(s) 23 13 35" src="https://user-images.githubusercontent.com/15971898/79566291-f1896b80-8077-11ea-8ddd-cecc40c7a9cc.png">
+<img width="600" alt="Captura de Pantalla 2020-04-14 a la(s) 23 13 35" src="https://user-images.githubusercontent.com/15971898/79566291-f1896b80-8077-11ea-8ddd-cecc40c7a9cc.png">
 
 ## Original post 
 https://sudonull.com/post/9623-Do-applications-on-Flutter-dream-about-platform-oriented-widgets
